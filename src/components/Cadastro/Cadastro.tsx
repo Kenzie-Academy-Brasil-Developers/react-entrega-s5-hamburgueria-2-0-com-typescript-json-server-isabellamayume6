@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
-//import { useAuth } from "../../Providers/AuthProvider";
+import { useAuth } from "../../Providers/AuthProvider";
 
 interface UserData {
   email: string;
@@ -12,7 +12,7 @@ interface UserData {
 }
 
 const Cadastro = () => {
-  //const { signUp } = useAuth();
+  const { signUp } = useAuth();
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -21,13 +21,10 @@ const Cadastro = () => {
       .email("e-mail inválido!")
       .required("Campo obrigatório!"),
     name: yup.string().required("Campo obrigatório!"),
-    idade: yup
+    age: yup.string().required("Senha obrigatória!"),
+    password: yup
       .string()
-      .required("Senha obrigatória!")
-      .min(6, "Minimo de 6 caracteres"),
-    senha: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "senhas diferentes")
+      .min(6, "Minimo de 6 caracteres")
       .required("campo obrigatório"),
   });
   const {
@@ -38,7 +35,8 @@ const Cadastro = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = () => {
+  const onSubmit = (data: UserData) => {
+    signUp(data);
     console.log("teste");
   };
   return (

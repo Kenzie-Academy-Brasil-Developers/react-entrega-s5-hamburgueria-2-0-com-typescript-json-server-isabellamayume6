@@ -1,9 +1,9 @@
-import { Products } from "../../components/Products";
+import { Produtos } from "../../components/Products";
 
 export const Dashboard = () => {
   return (
     <div>
-      <Products />
+      <Produtos />
     </div>
   );
 };

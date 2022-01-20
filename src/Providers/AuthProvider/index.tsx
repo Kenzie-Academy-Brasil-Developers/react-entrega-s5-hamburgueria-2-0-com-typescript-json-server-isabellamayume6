@@ -6,7 +6,7 @@ interface SignInProps {
   children: ReactNode;
 }
 
-interface Person {
+interface LoginProps {
   email: string;
   password: string;
 }
@@ -19,7 +19,7 @@ interface RegisterProps {
 }
 
 interface AuthProviderData {
-  signIn: (auth: Person) => void;
+  signIn: (auth: LoginProps) => void;
   signUp: (auth: RegisterProps) => void;
   logout: () => void;
   userId: string;
@@ -40,16 +40,17 @@ export const AuthProvider = ({ children }: SignInProps) => {
     () => localStorage.getItem("@teste:userId") || ""
   );
   //para logar
-  const signIn = (userData: Person) => {
+  const signIn = (userData: LoginProps) => {
     axios
-      .post("https://localhost:3001/login", userData)
+      .post("https://apifakehamburgueria.herokuapp.com/login", userData)
       .then((response) => {
-        localStorage.setItem("@teste:token", response.data.token);
-        localStorage.setItem("@teste:userId", response.data.user.id);
+        localStorage.setItem("@burguer:token", response.data.token);
+        localStorage.setItem("@burguer:userId", response.data.user.id);
 
         setAuthToken(response.data.token);
         setUserId(response.data.user.id);
         history.push("/dashboard");
+        console.log(userData);
       })
       .catch((err) => {
         console.log("deu errado", err);
@@ -58,9 +59,9 @@ export const AuthProvider = ({ children }: SignInProps) => {
   //para cadastrar
   const signUp = (userData: RegisterProps) => {
     axios
-      .post("https://localhost:3001/users", userData)
-      .then((_) => {
-        history.push("/login");
+      .post("https://apifakehamburgueria.herokuapp.com/register", userData)
+      .then((response) => {
+        history.push("/");
       })
       .catch((err) => console.log(err));
   };

@@ -1,4 +1,10 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 
 import axios from "axios";
 
@@ -25,11 +31,12 @@ const ProductsContext = createContext<ProductsProviderData>(
 export const ProductsProvider = ({ children }: ChildrenProps) => {
   const [products, setProducts] = useState<Produto[]>([]);
 
-  axios
-    .get("https://apifakehamburgueria.herokuapp.com/products")
-    .then((response) => setProducts(response.data))
-    .catch((err) => console.log(err));
-
+  useEffect(() => {
+    !products[0] &&
+      axios
+        .get("https://apifakehamburgueria.herokuapp.com/products")
+        .then((response) => setProducts(response.data));
+  });
   return (
     <ProductsContext.Provider value={{ products }}>
       {children}
