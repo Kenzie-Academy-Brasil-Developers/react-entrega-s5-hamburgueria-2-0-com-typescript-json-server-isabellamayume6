@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import { LoginPage } from "../pages/Login";
 import { CadastroPage } from "../pages/Cadastro";
+import { Dashboard } from "../pages/Dashboard";
 
 const Routes = () => {
   return (
@@ -10,6 +11,9 @@ const Routes = () => {
       </Route>
       <Route path="/cadastro">
         <CadastroPage />
+      </Route>
+      <Route path="/dashboard">
+        <Dashboard />
       </Route>
     </Switch>
   );

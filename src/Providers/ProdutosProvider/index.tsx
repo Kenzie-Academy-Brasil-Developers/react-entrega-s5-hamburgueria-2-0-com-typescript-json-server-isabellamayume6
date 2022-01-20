@@ -26,7 +26,7 @@ export const ProductsProvider = ({ children }: ChildrenProps) => {
   const [products, setProducts] = useState<Produto[]>([]);
 
   axios
-    .get("https://localhost:3001/login")
+    .get("https://apifakehamburgueria.herokuapp.com/products")
     .then((response) => setProducts(response.data))
     .catch((err) => console.log(err));
 
