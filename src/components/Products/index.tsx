@@ -1,10 +1,12 @@
 import { useProducts } from "../../Providers/ProdutosProvider";
+import Header from "../Header";
 
 export const Produtos = () => {
   const { products } = useProducts();
 
   return (
     <div>
+      <Header />
       <ul>
         {products.map((produto) => (
           <li key={produto.id}>

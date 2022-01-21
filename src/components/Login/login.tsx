@@ -1,9 +1,11 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BoxForm, Form, FormInputs, FormButton } from "./styled";
+import { BoxForm, Form, FormInputs, FormButton, ButtonCad } from "./styled";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Providers/AuthProvider";
+
+import ArtLogin from "../ArtLogin";
 
 interface UserData {
   email: string;
@@ -32,31 +34,34 @@ const Login = () => {
     console.log("logay", data);
   };
   return (
-    <BoxForm>
-      <h2>Login</h2>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormInputs placeholder="E-mail" {...register("email")} />
-        <span>{errors.email?.message}</span>
-        <FormInputs
-          placeholder="Senha"
-          type="password"
-          {...register("password")}
-        />
-        <span>{errors.password?.message}</span>
-        <FormButton type="submit">Entrar</FormButton>
-      </Form>
-      <footer>
-        <p>Ainda não tem uma conta?</p>
-        <button
-          onClick={() => {
-            history.push("/cadastro");
-          }}
-        >
-          {" "}
-          Cadastrar
-        </button>
-      </footer>
-    </BoxForm>
+    <>
+      <ArtLogin />
+
+      <BoxForm>
+        <h2>Login</h2>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <FormInputs placeholder="E-mail" {...register("email")} />
+          <span>{errors.email?.message}</span>
+          <FormInputs
+            placeholder="Senha"
+            type="password"
+            {...register("password")}
+          />
+          <span>{errors.password?.message}</span>
+          <FormButton type="submit">Entrar</FormButton>
+        </Form>
+        <footer>
+          <p>Ainda não tem uma conta?</p>
+          <ButtonCad
+            onClick={() => {
+              history.push("/cadastro");
+            }}
+          >
+            Cadastrar
+          </ButtonCad>
+        </footer>
+      </BoxForm>
+    </>
   );
 };
 export default Login;
