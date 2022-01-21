@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Providers/AuthProvider";
+import ArtLogin from "../ArtLogin";
+import { BoxCad, FormCad, FormInputs, FormButton, ButtonLog } from "./styled";
 
 interface UserData {
   email: string;
@@ -40,22 +42,29 @@ const Cadastro = () => {
     console.log("teste");
   };
   return (
-    <div>
-      <h1>Cadastre-se</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder="email" {...register("email")} />
-        <span>{errors.email?.message}</span>
-        <input placeholder="nome" {...register("name")} />
-        <span>{errors.name?.message}</span>
-        <input placeholder="idade" {...register("age")} />
-        <span>{errors.age?.message}</span>
-        <input placeholder="senha" type="password" {...register("password")} />
-        <span>{errors.password?.message}</span>
-        <button type="submit">Cadastrar</button>
-      </form>
-      <p>Já possui conta?</p>
-      <button onClick={() => history.push("/")}>Login</button>
-    </div>
+    <>
+      <ArtLogin />
+      <BoxCad>
+        <h2>Cadastro</h2>
+        <FormCad onSubmit={handleSubmit(onSubmit)}>
+          <FormInputs placeholder="email" {...register("email")} />
+          <span>{errors.email?.message}</span>
+          <FormInputs placeholder="nome" {...register("name")} />
+          <span>{errors.name?.message}</span>
+          <FormInputs placeholder="idade" {...register("age")} />
+          <span>{errors.age?.message}</span>
+          <FormInputs
+            placeholder="senha"
+            type="password"
+            {...register("password")}
+          />
+          <span>{errors.password?.message}</span>
+          <FormButton type="submit">Cadastrar</FormButton>
+        </FormCad>
+        <p>Já possui conta?</p>
+        <ButtonLog onClick={() => history.push("/")}>Login</ButtonLog>
+      </BoxCad>
+    </>
   );
 };
 export default Cadastro;
