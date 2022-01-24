@@ -1,12 +1,9 @@
 import { useHistory } from "react-router-dom";
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
-import { H2, Search, Alert } from "./styled";
-//import { Cart } from "../Cart";
-import { useCart } from "../../Providers/CartProviders";
+import { H2, Search } from "./styled";
 
 const Header = () => {
   const history = useHistory();
-  const { cart } = useCart();
   return (
     <div className="header">
       <H2>
