@@ -1,23 +1,29 @@
 import { useProducts } from "../../Providers/ProdutosProvider";
 import Header from "../Header";
+import { BoxProducts, CardPro, InfoCard, CardButton } from "./styled";
+import { useCart } from "../../Providers/CartProviders";
 
 export const Produtos = () => {
   const { products } = useProducts();
 
+  const { addProduct } = useCart();
+
   return (
     <div>
       <Header />
-      <ul>
+      <BoxProducts>
         {products.map((produto) => (
-          <li key={produto.id}>
+          <CardPro key={produto.id}>
             <img src={produto.img} alt={produto.name} />
-            <p>{produto.name}</p>
-            <p>{produto.category}</p>
-            <strong>{produto.price.toFixed(2)}</strong>
-            <button>adc</button>
-          </li>
+            <InfoCard>
+              <p>{produto.name}</p>
+              <p>{produto.category}</p>
+              <strong>{produto.price.toFixed(2)}</strong>
+              <CardButton onClick={() => addProduct}>adicionar</CardButton>
+            </InfoCard>
+          </CardPro>
         ))}
-      </ul>
+      </BoxProducts>
     </div>
   );
 };
