@@ -1,10 +1,12 @@
 import { useHistory } from "react-router-dom";
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { H2, Search, Alert } from "./styled";
-import { Cart } from "../Cart";
+//import { Cart } from "../Cart";
+import { useCart } from "../../Providers/CartProviders";
 
 const Header = () => {
   const history = useHistory();
+  const { cart } = useCart();
   return (
     <div className="header">
       <H2>
@@ -14,8 +16,9 @@ const Header = () => {
             history.push("/carrinho");
           }}
         >
-          {Cart.length > 0 ? <Alert>{Cart.length}</Alert> : <></>}
-
+          {
+            //{cart.length > 0 ? <Alert>{cart.length}</Alert> : <></>}
+          }
           <FiShoppingCart />
         </button>
       </H2>

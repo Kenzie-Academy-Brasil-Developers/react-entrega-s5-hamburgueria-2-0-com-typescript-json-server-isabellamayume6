@@ -12,14 +12,16 @@ export const Produtos = () => {
     <div>
       <Header />
       <BoxProducts>
-        {products.map((produto) => (
-          <CardPro key={produto.id}>
+        {products.map((produto, i) => (
+          <CardPro key={i}>
             <img src={produto.img} alt={produto.name} />
             <InfoCard>
               <p>{produto.name}</p>
               <p>{produto.category}</p>
               <strong>{produto.price.toFixed(2)}</strong>
-              <CardButton onClick={() => addProduct}>adicionar</CardButton>
+              <CardButton onClick={() => addProduct(produto)}>
+                adicionar
+              </CardButton>
             </InfoCard>
           </CardPro>
         ))}

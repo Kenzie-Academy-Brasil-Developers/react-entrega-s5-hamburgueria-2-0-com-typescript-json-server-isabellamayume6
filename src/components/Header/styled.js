@@ -45,4 +45,7 @@ export const Alert = styled.div`
   background: red;
   border-radius: 50px;
   margin-left: 13px;
+  p {
+    margin: none;
+  }
 `;

@@ -31,12 +31,18 @@ export const InfoCard = styled.div`
   }
 `;
 export const CardButton = styled.button`
-margin-left: 8px;
-outline: none;
-border: none;
-background-color: #27ae60;
-height: 35px;
-width: 95px;
-border-radius: 5px;
-color: #f5f5f5;
-}`;
+  margin-left: 8px;
+  outline: none;
+  border: none;
+  background-color: #27ae60;
+  height: 35px;
+  width: 95px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background: #1dd168;
+  }
+`;
